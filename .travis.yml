@@ -41,6 +41,7 @@ before_install:
   - sudo apt-get update -qq > /dev/null
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
+  - "phantomjs --version"
 
 install:
   - git tag 999.0.0
@@ -77,6 +78,8 @@ before_script:
   - ls -lh $SOLR_CONFS
   # Install Solr
   - cat modules/search_api_solr/travis-solr.sh | bash
+  # start phantomjs with gastonjs
+  - phantomjs --ssl-protocol=any --ignore-ssl-errors=true vendor/jcalderonzumba/gastonjs/src/Client/main.js 8510 1600 1080
 
 script:
   # Run the tests
