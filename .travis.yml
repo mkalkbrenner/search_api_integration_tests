@@ -41,6 +41,7 @@ before_install:
   - sudo apt-get update -qq > /dev/null
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
+  - "phantomjs --version"
 
 install:
   - git tag 999.0.0
@@ -58,7 +59,7 @@ install:
 
 before_script:
   - cd $TRAVIS_BUILD_DIR/../drupal
-  - composer require --no-update drupal/search_api:dev-8.x-1.x drupal/facets:dev-8.x-1.x drupal/search_api_solr:dev-8.x-1.x drupal/search_api_solr_multilingual:dev-8.x-1.x
+  - composer require --no-update drupal/search_api:dev-1.x drupal/facets:dev-1.x drupal/search_api_solr:dev-1.x drupal/search_api_solr_multilingual:dev-1.x
   - composer install --no-progress
   - cd web
   # start the built-in php web server (mysql is already started)
@@ -77,6 +78,8 @@ before_script:
   - ls -lh $SOLR_CONFS
   # Install Solr
   - cat modules/search_api_solr/travis-solr.sh | bash
+  # start phantomjs with gastonjs
+  - phantomjs --ssl-protocol=any --ignore-ssl-errors=true ../vendor/jcalderonzumba/gastonjs/src/Client/main.js 8510 1600 1080 > /tmp/pantomjs.out 2>&1 &
 
 script:
   # Run the tests
