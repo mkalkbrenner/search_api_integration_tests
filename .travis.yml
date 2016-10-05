@@ -79,7 +79,7 @@ before_script:
   # Install Solr
   - cat modules/search_api_solr/travis-solr.sh | bash
   # start phantomjs with gastonjs
-  - phantomjs --ssl-protocol=any --ignore-ssl-errors=true ../vendor/jcalderonzumba/gastonjs/src/Client/main.js 8510 1600 1080
+  - phantomjs --ssl-protocol=any --ignore-ssl-errors=true ../vendor/jcalderonzumba/gastonjs/src/Client/main.js 8510 1600 1080 > /tmp/pantomjs.out 2>&1 &
 
 script:
   # Run the tests
