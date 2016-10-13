@@ -85,7 +85,7 @@ before_script:
 
 script:
   # Run the tests
-  - cd $TRAVIS_BUILD_DIR/../drupal/web/
+  - cd $TRAVIS_BUILD_DIR/../drupal
   - export SIMPLETEST_DB=mysql://root:@localhost/drupal
   - export SIMPLETEST_BASE_URL=http://localhost:8888
   - php core/scripts/run-tests.sh --verbose --color --concurrency 4 --php `which php` --url http://localhost:8888 --directory modules/contrib --types Simpletest | tee /tmp/test.txt ; export TEST_EXIT=${PIPESTATUS[0]} ; echo $TEST_EXIT
@@ -95,7 +95,7 @@ script:
   # bit.
   # Also make the grep case insensitive and fail on run-tests.sh regular fails as well on fatal errors.
   - TEST_OUTPUT=$(! egrep -i "([0-9]+ fails)|(Fatal erro)|([0-9]+ exceptions)" /tmp/test.txt > /dev/null)$?
-  - cd $TRAVIS_BUILD_DIR/../drupal/web/
+  - cd $TRAVIS_BUILD_DIR/../drupal
   - ./../vendor/bin/phpunit -c core --group search_api,facets,search_api_solr,search_api_solr_multilingual --verbose --debug | tee ; export TEST_PHPUNIT=${PIPESTATUS[0]} ; echo $TEST_PHPUNIT
   #- ./vendor/bin/phpunit --group search_api_solr_multilingual -c "../modules/search_api_solr/phpunit.xml.travis" --verbose --debug --coverage-text | tee ; export TEST_PHPUNIT=${PIPESTATUS[0]} ; echo $TEST_PHPUNIT
   # if the TEST_EXIT status is 0 AND the TEST_OUTPUT status is also 0 it means we succeeded, in all other cases we
