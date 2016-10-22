@@ -62,12 +62,7 @@ install:
   - composer require drupal/search_api_solr_multilingual:1.x-dev
   - composer require drupal/facets:1.x-dev
   - composer require drush/drush
-  #########################################
-  # to be removed once #2803701 is resolved
-  - cd modules/search_api
-  - curl https://www.drupal.org/files/issues/2803701-8--php5_strict_warning.patch | patch -p1
   - cd $TRAVIS_BUILD_DIR/../drupal
-  #########################################
 
 before_script:
   # start the built-in php web server (mysql is already started) and
