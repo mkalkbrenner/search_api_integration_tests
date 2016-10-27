@@ -66,9 +66,9 @@ install:
   - cd $TRAVIS_BUILD_DIR/../drupal
 
 before_script:
-  # Start the built-in php web server via Drush (mysql is already started) and
+  # Start the built-in php web server (mysql is already started) and
   # suppress web-server access logs output.
-  - ./vendor/bin/drush rs 8888 >& /dev/null &
+  - php -S localhost:8888 ./vendor/drush/drush/commands/runserver/d8-rs-router.php >& /dev/null &
   # Install the site
   - ./vendor/bin/drush -v site-install minimal --db-url=mysql://root:@localhost/drupal --yes
   - ./vendor/bin/drush en --yes simpletest
