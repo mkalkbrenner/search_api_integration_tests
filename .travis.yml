@@ -63,6 +63,15 @@ install:
   - composer require drupal/search_api_solr_multilingual:1.x-dev
   - composer require drupal/facets:1.x-dev
   - composer require drush/drush
+  #########################################
+  # to be removed once #2817399 is resolved
+  - cd modules/facets
+  - curl https://www.drupal.org/files/issues/fix_block_delete_tests-2817399-11.patch | patch -p1
+  #########################################
+  # to be removed once https://github.com/drush-ops/drush/pull/2420 is approved
+  - cd $TRAVIS_BUILD_DIR/../drupal/vendor/drush/drush
+  - curl https://gist.githubusercontent.com/itsekhmistro/30ced918a45de48a3543e6fc5d0d3098/raw/ed2da17268507ca12909f0ff684a38fccef7b259/d8-rs-router.fix-q.patch | patch -p1
+  #########################################
   - cd $TRAVIS_BUILD_DIR/../drupal
 
 before_script:
