@@ -63,11 +63,12 @@ install:
   - composer require drupal/search_api_solr_multilingual:1.x-dev
   - composer require drupal/facets:1.x-dev
   - composer require drush/drush
+  # Patch template.
   #########################################
   # to be removed once #2821955 is resolved
-  - cd modules/search_api
-  - curl https://www.drupal.org/files/issues/2821955_6.patch | patch -p1
-  - cd $TRAVIS_BUILD_DIR/../drupal
+  #- cd modules/search_api
+  #- curl https://www.drupal.org/files/issues/2821955_6.patch | patch -p1
+  #- cd $TRAVIS_BUILD_DIR/../drupal
   #########################################
   # to be removed once https://github.com/drush-ops/drush/pull/2420 is approved
   - cd $TRAVIS_BUILD_DIR/../drupal/vendor/drush/drush
