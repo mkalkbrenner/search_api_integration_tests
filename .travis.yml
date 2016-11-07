@@ -20,9 +20,11 @@ php:
 env:
   - PATH=$PATH:/home/travis/.composer/vendor/bin SOLR_VERSION=4.5.1 SOLR_CORE=d8 SOLR_CONFS="$TRAVIS_BUILD_DIR/../drupal/modules/search_api_solr/solr-conf/4.x"
   - PATH=$PATH:/home/travis/.composer/vendor/bin SOLR_VERSION=5.5.1 SOLR_CORE=d8 SOLR_CONFS="$TRAVIS_BUILD_DIR/../drupal/modules/search_api_solr/solr-conf/5.x"
-  - PATH=$PATH:/home/travis/.composer/vendor/bin SOLR_VERSION=6.0.1 SOLR_CORE=d8 SOLR_CONFS="$TRAVIS_BUILD_DIR/../drupal/modules/search_api_solr/solr-conf/6.x"
+  - PATH=$PATH:/home/travis/.composer/vendor/bin SOLR_VERSION=6.2.1 SOLR_CORE=d8 SOLR_CONFS="$TRAVIS_BUILD_DIR/../drupal/modules/search_api_solr/solr-conf/6.x"
 
 notifications:
+  email:
+    - remus@gmx.net
   irc:
     - "chat.freenode.net#drupal-search-api"
 
@@ -63,16 +65,12 @@ install:
   - composer require drupal/search_api_solr_multilingual:1.x-dev
   - composer require drupal/facets:1.x-dev
   - composer require drush/drush
+  # Patch template.
   #########################################
   # to be removed once #2821955 is resolved
-  - cd modules/search_api
-  - curl https://www.drupal.org/files/issues/2821955_6.patch | patch -p1
-  - cd $TRAVIS_BUILD_DIR/../drupal
-  #########################################
-  # to be removed once #2817399 is resolved
-  - cd modules/facets
-  - curl https://www.drupal.org/files/issues/fix_block_delete_tests-2817399-11.patch | patch -p1
-  - cd $TRAVIS_BUILD_DIR/../drupal
+  #- cd modules/search_api
+  #- curl https://www.drupal.org/files/issues/2821955_6.patch | patch -p1
+  #- cd $TRAVIS_BUILD_DIR/../drupal
   #########################################
   # to be removed once https://github.com/drush-ops/drush/pull/2420 is approved
   - cd $TRAVIS_BUILD_DIR/../drupal/vendor/drush/drush
