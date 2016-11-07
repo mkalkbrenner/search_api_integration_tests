@@ -23,6 +23,8 @@ env:
   - PATH=$PATH:/home/travis/.composer/vendor/bin SOLR_VERSION=6.2.1 SOLR_CORE=d8 SOLR_CONFS="$TRAVIS_BUILD_DIR/../drupal/modules/search_api_solr/solr-conf/6.x"
 
 notifications:
+  email:
+    - remus@gmx.net
   irc:
     - "chat.freenode.net#drupal-search-api"
 
