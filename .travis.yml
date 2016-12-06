@@ -78,6 +78,9 @@ install:
   - curl https://gist.githubusercontent.com/itsekhmistro/30ced918a45de48a3543e6fc5d0d3098/raw/ed2da17268507ca12909f0ff684a38fccef7b259/d8-rs-router.fix-q.patch | patch -p1
   - cd $TRAVIS_BUILD_DIR/../drupal
   #########################################
+  # to be removed once #2831816 is resolved
+  - curl https://www.drupal.org/files/issues/check_all_config_dependency_types-2831816-9-complete.patch | patch -p1
+ #########################################
 
 before_script:
   # Start the built-in php web server (mysql is already started) and
