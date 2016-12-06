@@ -80,6 +80,7 @@ install:
   #########################################
   # to be removed once #2831816 is resolved
   - curl https://www.drupal.org/files/issues/check_all_config_dependency_types-2831816-9-complete.patch | patch -p1
+  - cd $TRAVIS_BUILD_DIR/../drupal
  #########################################
 
 before_script:
