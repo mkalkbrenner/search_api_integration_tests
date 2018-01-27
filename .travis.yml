@@ -26,14 +26,13 @@ cache:
     - $HOME/.composer/cache
     - solr_downloads
 
-mysql:
-  database: drupal
-  username: root
-  encoding: utf8
+services:
+  - mysql
 
 before_install:
   - phpenv config-rm xdebug.ini
   - composer global require "hirak/prestissimo:^0.3"
+  - mysql -e 'CREATE DATABASE drupal;'
   - test -z ${SOLR_VERSION} || ls solr_downloads/
   - test -z ${SOLR_VERSION} || wget -nc --continue -v --tries=3 --directory-prefix=solr_downloads "http://archive.apache.org/dist/lucene/solr/${SOLR_VERSION}/solr-${SOLR_VERSION}.tgz"
   - test -z ${SOLR_VERSION} || tar -xzf solr_downloads/solr-${SOLR_VERSION}.tgz
@@ -92,7 +91,7 @@ before_script:
 script:
   # Run the tests within the drupal directory.
   - cd $TRAVIS_BUILD_DIR/../drupal
-  - ./vendor/bin/phpunit -c core --group ${TEST_GROUP} --verbose --debug
+  - ./vendor/bin/phpunit -c core --group ${TEST_GROUP} --verbose
 
 matrix:
   exclude:
