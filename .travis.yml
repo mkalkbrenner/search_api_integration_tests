@@ -14,8 +14,12 @@ env:
   - TEST_GROUP=search_api_solr DRUPAL_BRANCH=8.5.x DRUSH_VERSION=~9.0.0 SOLR_VERSION=7.2.1 SOLR_CORE=d8 SEARCH_API_SOLR_CONF=7.x
   - TEST_GROUP=search_api_solr DRUPAL_BRANCH=8.4.x DRUSH_VERSION=~8.1.15 SOLR_VERSION=7.2.1 SOLR_CORE=d8 SEARCH_API_SOLR_CONF=7.x
   - TEST_GROUP=search_api_solr DRUPAL_BRANCH=8.4.x DRUSH_VERSION=~8.1.15 SOLR_VERSION=6.6.2 SOLR_CORE=d8 SEARCH_API_SOLR_CONF=6.x
-  - TEST_GROUP=facets DRUPAL_BRANCH=8.5.x DRUSH_VERSION=~9.0.0 SOLR_VERSION= SEARCH_API_SOLR_CONF=
-  - TEST_GROUP=facets DRUPAL_BRANCH=8.4.x DRUSH_VERSION=~8.1.15 SOLR_VERSION= SEARCH_API_SOLR_CONF=
+  - TEST_GROUP="facets --filter 'Drupal\\Tests\\facets\\Functional'" DRUPAL_BRANCH=8.5.x DRUSH_VERSION=~9.0.0 SOLR_VERSION= SEARCH_API_SOLR_CONF=
+  - TEST_GROUP="facets --filter 'Drupal\\Tests\\facets\\Functional'" DRUPAL_BRANCH=8.4.x DRUSH_VERSION=~8.1.15 SOLR_VERSION= SEARCH_API_SOLR_CONF=
+  - TEST_GROUP="facets --filter 'Drupal\\Tests\\facets\\Kernel'" DRUPAL_BRANCH=8.5.x DRUSH_VERSION=~9.0.0 SOLR_VERSION= SEARCH_API_SOLR_CONF=
+  - TEST_GROUP="facets --filter 'Drupal\\Tests\\facets\\Kernel'" DRUPAL_BRANCH=8.4.x DRUSH_VERSION=~8.1.15 SOLR_VERSION= SEARCH_API_SOLR_CONF=
+  - TEST_GROUP="facets --filter 'Drupal\\Tests\\facets\\Unit'" DRUPAL_BRANCH=8.5.x DRUSH_VERSION=~9.0.0 SOLR_VERSION= SEARCH_API_SOLR_CONF=
+  - TEST_GROUP="facets --filter 'Drupal\\Tests\\facets\\Unit'" DRUPAL_BRANCH=8.4.x DRUSH_VERSION=~8.1.15 SOLR_VERSION= SEARCH_API_SOLR_CONF=
 
 notifications:
   irc:
@@ -104,7 +108,11 @@ matrix:
       - php: 5.6
         env: TEST_GROUP=search_api_solr DRUPAL_BRANCH=8.4.x DRUSH_VERSION=~8.1.15 SOLR_VERSION=6.6.2 SOLR_CORE=d8 SEARCH_API_SOLR_CONF=6.x
       - php: 5.6
-        env: TEST_GROUP=facets DRUPAL_BRANCH=8.5.x DRUSH_VERSION=~9.0.0 SOLR_VERSION= SEARCH_API_SOLR_CONF=
+        env: TEST_GROUP="facets --filter 'Drupal\\Tests\\facets\\Functional'" DRUPAL_BRANCH=8.5.x DRUSH_VERSION=~9.0.0 SOLR_VERSION= SEARCH_API_SOLR_CONF=
+      - php: 5.6
+        env: TEST_GROUP="facets --filter 'Drupal\\Tests\\facets\\Kernel'" DRUPAL_BRANCH=8.5.x DRUSH_VERSION=~9.0.0 SOLR_VERSION= SEARCH_API_SOLR_CONF=
+      - php: 5.6
+        env: TEST_GROUP="facets --filter 'Drupal\\Tests\\facets\\Unit'" DRUPAL_BRANCH=8.5.x DRUSH_VERSION=~9.0.0 SOLR_VERSION= SEARCH_API_SOLR_CONF=
       - php: 7.0
         env: TEST_GROUP=search_api_solr DRUPAL_BRANCH=8.5.x DRUSH_VERSION=~9.0.0 SOLR_VERSION=7.2.1 SOLR_CORE=d8 SEARCH_API_SOLR_CONF=7.x
       - php: 7.1
@@ -118,6 +126,26 @@ matrix:
       - php: 7.2
         env: TEST_GROUP=search_api_solr DRUPAL_BRANCH=8.4.x DRUSH_VERSION=~8.1.15 SOLR_VERSION=6.6.2 SOLR_CORE=d8 SEARCH_API_SOLR_CONF=6.x
       - php: 7.2
-        env: TEST_GROUP=facets DRUPAL_BRANCH=8.4.x DRUSH_VERSION=~8.1.15 SOLR_VERSION= SEARCH_API_SOLR_CONF=
+        env: TEST_GROUP="facets --filter 'Drupal\\Tests\\facets\\Functional'" DRUPAL_BRANCH=8.4.x DRUSH_VERSION=~8.1.15 SOLR_VERSION= SEARCH_API_SOLR_CONF=
+      - php: 7.2
+        env: TEST_GROUP="facets --filter 'Drupal\\Tests\\facets\\Kernel'" DRUPAL_BRANCH=8.4.x DRUSH_VERSION=~8.1.15 SOLR_VERSION= SEARCH_API_SOLR_CONF=
+      - php: 7.2
+        env: TEST_GROUP="facets --filter 'Drupal\\Tests\\facets\\Unit'" DRUPAL_BRANCH=8.4.x DRUSH_VERSION=~8.1.15 SOLR_VERSION= SEARCH_API_SOLR_CONF=
   allow_failures:
       - php: 7.2
+      - php: 7.1
+        env: TEST_GROUP=search_api DRUPAL_BRANCH=8.5.x DRUSH_VERSION=~9.0.0 SOLR_VERSION= SEARCH_API_SOLR_CONF=
+      - php: 7.1
+        env: TEST_GROUP="facets --filter 'Drupal\\Tests\\facets\\Functional'" DRUPAL_BRANCH=8.5.x DRUSH_VERSION=~9.0.0 SOLR_VERSION= SEARCH_API_SOLR_CONF=
+      - php: 7.1
+        env: TEST_GROUP="facets --filter 'Drupal\\Tests\\facets\\Kernel'" DRUPAL_BRANCH=8.5.x DRUSH_VERSION=~9.0.0 SOLR_VERSION= SEARCH_API_SOLR_CONF=
+      - php: 7.1
+        env: TEST_GROUP="facets --filter 'Drupal\\Tests\\facets\\Unit'" DRUPAL_BRANCH=8.5.x DRUSH_VERSION=~9.0.0 SOLR_VERSION= SEARCH_API_SOLR_CONF=
+      - php: 7.0
+        env: TEST_GROUP=search_api DRUPAL_BRANCH=8.5.x DRUSH_VERSION=~9.0.0 SOLR_VERSION= SEARCH_API_SOLR_CONF=
+      - php: 7.0
+        env: TEST_GROUP="facets --filter 'Drupal\\Tests\\facets\\Functional'" DRUPAL_BRANCH=8.5.x DRUSH_VERSION=~9.0.0 SOLR_VERSION= SEARCH_API_SOLR_CONF=
+      - php: 7.0
+        env: TEST_GROUP="facets --filter 'Drupal\\Tests\\facets\\Kernel'" DRUPAL_BRANCH=8.5.x DRUSH_VERSION=~9.0.0 SOLR_VERSION= SEARCH_API_SOLR_CONF=
+      - php: 7.0
+        env: TEST_GROUP="facets --filter 'Drupal\\Tests\\facets\\Unit'" DRUPAL_BRANCH=8.5.x DRUSH_VERSION=~9.0.0 SOLR_VERSION= SEARCH_API_SOLR_CONF=
