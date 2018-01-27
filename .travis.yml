@@ -53,7 +53,8 @@ install:
   - cd $TRAVIS_BUILD_DIR/../drupal
   - composer install
   - composer config repositories.drupal composer https://packages.drupal.org/8
-  - composer require drupal/search_api:1.x-dev drupal/search_api_autocomplete:1.x-dev drupal/search_api_solr:2.x-dev drupal/search_api_location:1.x-dev drupal/facets:1.x-dev drupal/geofield:1.x-dev drupal/composer_deploy drush/drush:$DRUSH_VERSION
+  - composer require drupal/search_api:1.x-dev drupal/search_api_autocomplete:1.x-dev drupal/search_api_location:1.x-dev drupal/facets:1.x-dev drupal/geofield:1.x-dev drupal/composer_deploy drush/drush:$DRUSH_VERSION
+  - test -z ${SOLR_VERSION} || composer require drupal/search_api_solr:2.x-dev
   # Patch template.
   #########################################
   # to be removed once #2824932 is resolved
